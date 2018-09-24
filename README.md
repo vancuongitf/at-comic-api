@@ -208,7 +208,7 @@
 
 ```
 {
-    "code": 678,
+    "code": 400,
     "message": "Thiếu dữ liệu."
 }
 ```
