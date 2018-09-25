@@ -7,13 +7,16 @@
 	require_once($publicHtmlPath . 'public_html/api/v1/comic/detail/process.php');
 
 	$response = Response::getUnAuthorizionError();
-	if (isset($_SERVER['HTTP_ACCESS_TOKEN']) && checkToken(DBConnection::getConnection(), $_SERVER['HTTP_ACCESS_TOKEN']) != -1) {
+	if (isset($_SERVER['HTTP_ACCESS_TOKEN'])) {
 		$id = -1;
-		if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
-			$id = $_GET['id'];
-			$response = getComicDetail($id);
-		} else {
-			$response = Response::get400Error("Id không đúng định dạng.");
+		$userId = checkToken(DBConnection::getConnection(), $_SERVER['HTTP_ACCESS_TOKEN']);
+		if ($userId != -1) {
+			if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
+				$id = $_GET['id'];
+				$response = getComicDetail($userId, $id);
+			} else {
+				$response = Response::get400Error("Id không đúng định dạng.");
+			}	
 		}
 	}
 	header($response->code);

@@ -17,7 +17,7 @@
 					if ($stmt->affected_rows == 1) {
 						$response = Response::getMessageResponseWithMessage("Tạo tài khoản thành công.");
 					} else {
-						$response = Response::getNormalError();
+						$response = Response::get400Error("Xãy ra lỗi. Vui lòng thử lại sau.");
 					}
 					$stmt->close();
 				} else {

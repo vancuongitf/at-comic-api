@@ -17,11 +17,11 @@
 				if ($stmt->affected_rows == 1) {
 					$response = new Response(200, new Token($token));
 				} else {
-					$response = Response::getMessageResponseWithMessage("Mật khẩu hoặc tài khoản không chính xác.");
+					$response = Response::get400Error("Mật khẩu hoặc tài khoản không chính xác.");
 				}
 				$stmt->close();
 			} else {
-				$response = Response::getNormalErrorWithMessage("Email không đúng định dạng.");
+				$response = Response::get400Error("Email không đúng định dạng.");
 			}	
 		}
 		return $response;

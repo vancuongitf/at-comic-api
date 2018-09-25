@@ -40,7 +40,7 @@
 			return new Response(678, new ApiError(678, $message));
 		}
 		static function getMissingDataError() {
-			return new Response(678, new ApiError(678, "Thiếu dữ liệu."));
+			return new Response(400, new ApiError(400, "Thiếu dữ liệu."));
 		}
 
 		static function get400Error($message) {

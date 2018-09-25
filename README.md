@@ -84,6 +84,7 @@
             "description": "Tóm tắt câu chuyện.",
             "author": "Gosho Aoyama",
             "view_count": 0,
+            "like_flag": true,
             "like_count": 0,
             "image": "http://st.thichtruyentranh.com/images/icon/0004/conan1416865530.jpg"
         }
@@ -109,6 +110,7 @@
     "description": "Tóm tắt câu chuyện.",
     "author": "Gosho Aoyama",
     "view_count": 0,
+    "like_flag": true,
     "like_count": 0,
     "image": "http://st.thichtruyentranh.com/images/icon/0004/conan1416865530.jpg"
 }
