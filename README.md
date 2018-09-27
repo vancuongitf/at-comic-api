@@ -62,6 +62,34 @@
 
 ```
 
+### 3. Favorite Comic: api/v1/user/favorite/favorite.php
+
+#### Method: GET
+
+|Param|Type|Max Length|Default|Note|Require|
+|---|---|---|---|---|---|
+|access-token|String|||Header|Yes|
+|page|Interge||1|Page to load|No|
+
+#### Result - Max 50 comics each page.
+```
+{
+    "next_page_flag": false,
+    "result": [
+        {
+            "id": 1,
+            "name": "Conan",
+            "description": "Tóm tắt câu chuyện.",
+            "author": "Gosho Aoyama",
+            "view_count": 0,
+            "like_flag": true,
+            "like_count": 0,
+            "image": "http://st.thichtruyentranh.com/images/icon/0004/conan1416865530.jpg"
+        }
+    ]
+}
+```
+
 ## COMIC
 
 ### 1. Home: api/v1/comic/home/home.php

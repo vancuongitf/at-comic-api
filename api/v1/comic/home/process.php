@@ -5,13 +5,19 @@
 	require_once($publicHtmlPath . 'public_html/model/response/ApiError.php');
 	require_once($publicHtmlPath . 'public_html/util/Util.php');
 
-	function getComicList($userId, $page) {
+	function getComicList($userId, $page, $isFavoritesList) {
 		$mysql = DBConnection::getConnection();
 		$response = Response::getSQLConnectionError();
 		if ($mysql) {
 			$ignore = ($page - 1) * 30;
-			$stmt = $mysql->prepare('SELECT id, name, description, author, view_count, getLikeFlag(? ,id) as like_flag, getLikeCount(id) as like_count,image FROM Comic LIMIT ?, 30;');
-			$stmt->bind_param('ii', $userId, $ignore);
+			if ($isFavoritesList) {
+				$stmt = $mysql->prepare('SELECT id, name, description, author, view_count, getLikeFlag(? ,id) as like_flag, getLikeCount(id) as like_count,image FROM Comic INNER JOIN Favorite ON Comic.id = Favorite.comic_id WHERE Favorite.user_id = ? LIMIT ?, 30;');
+				$stmt->bind_param('iii', $userId,$userId, $ignore);
+			} else {
+				$stmt = $mysql->prepare('SELECT id, name, description, author, view_count, getLikeFlag(? ,id) as like_flag, getLikeCount(id) as like_count,image FROM Comic LIMIT ?, 30;');
+				$stmt->bind_param('ii', $userId, $ignore);
+			}
+			
 			$stmt->execute();
 			$stmt->bind_result($id, $name, $description, $author, $view_count, $like_flag, $like_count, $image);
 			$comics = array();

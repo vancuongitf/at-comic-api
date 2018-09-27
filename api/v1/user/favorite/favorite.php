@@ -17,7 +17,7 @@
 			if ($page < 1) {
 				$page = 1;
 			}
-			$response = getComicList($userId, $page, false);	
+			$response = getComicList($userId, $page, true);	
 		}
 	}
 	header($response->code);
